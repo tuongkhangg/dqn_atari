@@ -8,12 +8,12 @@ import numpy as np
 import random
 
 from torch.utils.tensorboard import SummaryWriter
-from baseline_wrappers import DummyVecEnv, Monitor
+from .baseline_wrappers import DummyVecEnv, Monitor
 
-from pytorch_wrappers import make_atari_deepmind, PytorchLazyFrame, BatchedPytorchFrameStack
+from .pytorch_wrappers import make_atari_deepmind, PytorchLazyFrame, BatchedPytorchFrameStack
 
-import msgpack_numpy
-from msgpack_numpy import patch as msgpack_numpy_patch
+import .msgpack_numpy
+from .msgpack_numpy import patch as msgpack_numpy_patch
 
 msgpack_numpy_patch()
 
