@@ -3,3 +3,5 @@ gym
 torch
 tensorflow
 matplotlib
+opencv-python
+tensorboard
