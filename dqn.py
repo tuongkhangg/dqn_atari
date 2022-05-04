@@ -39,7 +39,7 @@ def nature_cnn(observation_space, depths = (32, 64, 64), final_layer=512):
         nn.Flatten())
     
     with torch.no_grad():
-        n_flatten = cnn.(torch.as_tensor(observation_space.sample()[None]).float()).shape[1]
+        n_flatten = cnn(torch.as_tensor(observation_space.sample()[None]).float()).shape[1]
 
     out = nn.Sequential(cnn, nn.Linear(n_flatten, final_layer), nn.ReLU())
     
@@ -252,15 +252,4 @@ for step in itertools.count():
 
     if step % SAVE_INTERVAL == 0:
         print('Saving ...')
-        online_net.save(SAVE_PATH)
-
-
-
-
-
-
-
-
-
-
- 
+        online_net.save(SAVE_PATH) 
