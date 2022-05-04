@@ -1,15 +1,21 @@
 from torch import nn
 import torch
+import tensorboard
 import gym
 from collections import deque
 import itertools
 import numpy as np
 import random
-from pytorch_wrappers import make_atari_deepmind
+
+from torch.utils.tensorboard import SummaryWriter
+from baseline_wrappers import DummyVecEnv, Monitor
+
+from pytorch_wrappers import make_atari_deepmind, PytorchLazyFrame, BatchedPytorchFrameStack
+
 import msgpack_numpy
 from msgpack_numpy import patch as msgpack_numpy_patch
 
-msg_numpy_patch()
+msgpack_numpy_patch()
 
 GAMMA=0.99
 BATCH_SIZE=32
