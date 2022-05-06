@@ -63,12 +63,12 @@ class Network(nn.Module):
 
         self.net = nn.Sequential(conv_net, nn.Linear(512, self.num_actions))
 
-        self.net = nn.Sequential(
-            nn.Flatten(),
-            nn.Linear(in_features, 64),
-            nn.Tanh(),
-            nn.Linear(64, env.action_space.n)
-        )
+        #self.net = nn.Sequential(
+        #    nn.Flatten(),
+        #    nn.Linear(in_features, 64),
+        #    nn.Tanh(),
+        #    nn.Linear(64, env.action_space.n)
+        #)
 
     def forward(self, x):
         return self.net(x)
@@ -77,7 +77,7 @@ class Network(nn.Module):
         obses_t = torch.as_tensor(obses, dtype=torch.float32, device = self.device)
         q_values = self(obses_t)
         
-        max_q_index = torch.argmax(q_values, dim=1)[0]
+        max_q_index = torch.argmax(q_values, dim=1)
         action = max_q_index.detach().tolist()
 
         for i in range(len(actions)):
