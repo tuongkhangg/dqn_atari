@@ -1,6 +1,6 @@
 from torch import nn
 import torch
-import tensorboard
+#import tensorboard
 import gym
 from collections import deque
 import itertools
@@ -9,12 +9,12 @@ import random
 
 from torch.utils.tensorboard import SummaryWriter
 
+import msgpack
 from msgpack_numpy import patch as msgpack_numpy_patch
 from pytorch_wrappers import make_atari_deepmind, PytorchLazyFrames, BatchedPytorchFrameStack
 from baselines_wrappers import DummyVecEnv, Monitor
 
 
-import msgpack
 msgpack_numpy_patch()
 
 GAMMA=0.99
@@ -94,7 +94,7 @@ class Network(nn.Module):
         dones = np.asarray([t[3] for t in transitions])
         new_obses = [t[4] for t in transitions]
 
-        if isinstance(obses[0], PytorchLazyFrame):
+        if isinstance(obses[0], PytorchLazyFrames):
             obses = np.stack([o.get_frames() for o in obses])
             new_obses = np.stack([o.get_frames() for o in new_obses])
         else:
