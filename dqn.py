@@ -38,9 +38,9 @@ def nature_cnn(observation_space, depths = (32, 64, 64), final_layer=512):
     cnn = nn.Sequential(
         nn.Conv2d(n_input_channels, depths[0], kernel_size = 8, stride = 4),
         nn.ReLU(),
-        nn.Conv2d(depths[1], kernel_size = 4, stride = 2),
+        nn.Conv2d(depths[0] ,depths[1], kernel_size = 4, stride = 2),
         nn.ReLU(),
-        nn.Conv2d(depths[2], kernel_size = 3, stride = 1),
+        nn.Conv2d(depths[1], depths[2], kernel_size = 3, stride = 1),
         nn.ReLU(),
         nn.Flatten())
     
